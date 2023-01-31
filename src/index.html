@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>React, Webpack, Babel Starter Pack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <!-- your react app will render here -->
+    <div class="env-vars"></div>
+    <div id="app"></div>
+    <script>
+        debugger;
+        var token = {
+            user: {}
+        }
+        var cameo = new NCameo();
+        var param = {
+            token: {
+                accesstoken: token.accesstoken,
+                expiresOn: token.expiresOn,
+                user: {
+                    First_name: token.user.First_name,
+                    Last_name: token.user.Last_name,
+                    email: token.user.email,
+                    id: token.user.id,
+                    name: token.user.name,
+                    roles: token.user.roles
+                }
+            },
+            data: {}
+        }
+        cameo.form(param, document.getElementById("app"));
+    </script>
+  </body>
+</html>

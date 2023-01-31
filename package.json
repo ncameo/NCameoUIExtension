@@ -4,70 +4,42 @@
   "private": true,
   "homepage": "",
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-spinners": "^0.13.4"
   },
   "devDependencies": {
-    "6to5ify": "^4.1.1",
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.8.3",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.8.3",
-    "@svgr/webpack": "4.3.3",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@typescript-eslint/eslint-plugin": "^2.10.0",
-    "@typescript-eslint/parser": "^2.10.0",
-    "babel-eslint": "10.1.0",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^9.1.2",
     "babel-plugin-css-modules-transform": "^1.6.2",
-    "babel-plugin-named-asset-import": "^0.3.6",
-    "babel-preset-react-app": "^9.1.2",
-    "babelify": "^10.0.0",
-    "css-loader": "^3.5.3",
-    "eslint": "^6.6.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-loader": "3.0.3",
-    "eslint-plugin-flowtype": "4.6.0",
-    "eslint-plugin-import": "2.20.1",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "^1.6.1",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "html-loader": "^1.1.0",
-    "html-webpack-plugin": "4.0.0-beta.11",
-    "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
-    "pnp-webpack-plugin": "1.6.4",
-    "postcss-flexbugs-fixes": "4.1.0",
-    "postcss-loader": "3.0.0",
-    "postcss-normalize": "8.0.1",
-    "postcss-preset-env": "6.7.0",
-    "postcss-safe-parser": "4.0.1",
-    "react-dev-utils": "~10.0.0",
-    "redux-logger": "^3.0.6",
-    "resolve-url-loader": "3.1.2",
-    "sass-loader": "8.0.2",
-    "style-loader": "^0.23.1",
-    "sw-precache-webpack-plugin": "^0.11.4",
-    "terser-webpack-plugin": "^3.0.1",
-    "ts-pnp": "1.1.6",
-    "uglifyify": "^5.0.2",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "url-loader": "2.3.0",
-    "webpack": "^4.21.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "3.10.3",
-    "webpack-manifest-plugin": "2.2.0",
-    "workbox-webpack-plugin": "4.3.1"
+    "css-loader": "^6.7.3",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "path-browserify": "^1.0.1",
+    "postcss": "^8.4.6",
+    "react-error-overlay": "6.0.9",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "tailwindcss": "^3.0.23",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "build": "set NODE_OPTIONS=--max-old-space-size=8192&&set NODE_ENV=production&&set BABEL_ENV=production&&webpack --config webpack.config.bundle.js",
+    "build": "webpack --mode production",
     "test": "node scripts/test.js --env=jsdom"
+  },
+  "browser": {
+    "fs": false
   },
   "browserslist": {
     "production": [
@@ -81,46 +53,10 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node",
-      "mjs"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   }
 }
