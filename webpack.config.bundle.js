@@ -1,34 +1,28 @@
 var webpack = require('webpack');
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const glob = require('glob');
-const TerserPlugin = require('terser-webpack-plugin')
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv').config({
+    path: path.join(__dirname, '.env')
+})
+
 
 module.exports = {
-    node: { global: true, fs: 'empty' }, // Fix: "Uncaught ReferenceError: global is not defined", and "Can't resolve 'fs'".
-    //   entry: {
-    //     "bundle.js": glob.sync("build/static/?(js|css)/main.*.?(js|css)").map(f => path.resolve(__dirname, f)),
-    //   },
-    entry: {
-        ncameo: "./src/plugin.js"
-    },
+    entry: path.join(__dirname, "src", "plugin.js"),
     output: {
-        filename: '[name].js',
-        path: __dirname + '/public/build'
+        path: path.join(__dirname, "/public/build"),
+        filename: "ncameo.js"
     },
     module: {
         rules: [
-            // {
-            //     test: /\.css$/,
-            //     use: ["style-loader", "css-loader"],
-            // },
             {
-                test: /\.js?$/,
-                exclude: /(node_modules|bower_components)/,
+                test: /\.js|\.jsx|\.ts|\.tsx$/,
+                exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
                         plugins: [
                             "@babel/plugin-transform-runtime",
                             "@babel/plugin-proposal-class-properties",
@@ -38,24 +32,50 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"]
+                test: /.(css|scss)$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             },
-            { test: /\.html$/, use: 'html-loader' },
-            { test: /\.(jpg|png|gif)$/, use: 'file-loader' },
-            { test: /\.(woff|woff2|eot|ttf|svg)$/, use: 'file-loader' }
-        ],
+            {
+                test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[path][name]-[hash:8].[ext]"
+                        }
+                    }
+                ]
+            }
+        ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env": dotenv.parsed
+        }),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: path.join(__dirname, "src", "index.html")
+        }),
         new MiniCssExtractPlugin(),
         new TerserPlugin({
             parallel: true,
             terserOptions: {
-                ecma: 6,
+                ecma: 7,
             },
         }),
         new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1,
         })
+        // new MiniCssExtractPlugin({
+        //     filename: "[name].css",
+        //     chunkFilename: "[id].css"
+        // })
     ],
-}
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        fallback: {
+            "fs": false,
+            "path": require.resolve("path-browserify")
+        }
+    }
+};
