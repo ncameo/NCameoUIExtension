@@ -1,24 +1,17 @@
 import React, { Suspense } from 'react'
-import ReactDOM, { render } from 'react-dom';
-import Loading from './helper/component/Loading';
-import ErrorBoundary from './helper/component/ErrorBoundary';
+import { createRoot } from 'react-dom/client';
+// import Loading from './helper/component/Loading'; // use react-spinners for loader and match with ncameo loader type.
 import HelloNcameo from './screens/helloncameo';
 
 NCameo.prototype.form = function (param, container) {
-  render(
-    <ErrorBoundary>
-      <Suspense fallback={<Loading enable={true} />}>
-        <HelloNcameo 
-          token={param.token}
-          data={param.data}
-        />
-      </Suspense></ErrorBoundary>, container);
-
+  const root = createRoot(container);
+  root.render(<HelloNcameo token={param.token} control={param.control ? param.control : {}} data={param.data} formid={param.formid} />);
 }
 NCameo.prototype.unmountComponent = function (container) {
-  ReactDOM.unmountComponentAtNode(container);
+  const root = createRoot(container);
+  root.unmount();
 }
 
-window.NCameo = NCameo;
+window.NCameoVizippPlugin = NCameo; // please change the plugin name (e.g. NCameoVizippPlugin) if you have multiple plugin's
 function NCameo() {
 };
