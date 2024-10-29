@@ -19,7 +19,7 @@ The NCameo UI Extension Plugin is a flexible tool that enables developers to enh
    ![image](https://github.com/user-attachments/assets/320bab58-e284-458e-aad8-4beea6ff431e)
 10. Save and reload Screen.
 
-**For assistance, please contact NCameo Support or visit https://www.ncameo.com/.**
+**For assistance, please contact NCameo Support or visit <a href="https://www.ncameo.com/" target="_blank">https://www.ncameo.com/</a>.**
 
 
 
