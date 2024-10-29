@@ -1,5 +1,7 @@
 # NCameo UI Extension
-NCameo UI Extension Plugin
+The NCameo UI Extension Plugin is a flexible tool that enables developers to enhance NCameo's capabilities by creating custom UI components. The plugin provides a reference sample screen (HelloNCameo), though users have the freedom to create their own screens as needed. With straightforward installation, easy integration into the NCameo Workbench, and the ability to upload the ncameo.js file, this plugin facilitates the development of interactive and visually engaging UI extensions within NCameo applications. NCameo Support and online resources are available for additional guidance.
+
+**NCameo UI Extension Plugin**
 
 1. Download the sample code from https://github.com/ncameo/NCameoUIExtension.git.
 2. Run npm install
