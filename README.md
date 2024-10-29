@@ -1,7 +1,7 @@
 # NCameo UI Extension
 NCameo UI Extension Plugin
 
-1. Download the code from https://github.com/ncameo/NCameoUIExtension.git.
+1. Download the sample code from https://github.com/ncameo/NCameoUIExtension.git.
 2. Run npm install
 3. Open Screen > HelloNCameo sample screen (Note: edit or extend components as needed).
 4. Run the command npm run build to generate the plugin.
