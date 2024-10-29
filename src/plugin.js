@@ -12,6 +12,6 @@ NCameo.prototype.unmountComponent = function (container) {
   root.unmount();
 }
 
-window.NCameoVizippPlugin = NCameo; // please change the plugin name (e.g. NCameoVizippPlugin) if you have multiple plugin's
+window.NCameo = NCameo; // please change the plugin name (e.g. window.NCameo to window.NCameo123) if you have multiple plugin's
 function NCameo() {
 };
